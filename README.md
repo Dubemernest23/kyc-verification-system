@@ -20,5 +20,3 @@ Building a production-ready KYC verification service to demonstrate:
 
 
 ---
-*Started: [Today's date]*  
-*Target completion: 6 weeks*
