@@ -4,24 +4,30 @@ import logger from './config/logger';
 
 // Load environment variables
 dotenv.config();
-
+console.log(process.env.PORT)
 const PORT = process.env.PORT || 5000;
 
 // Start server
 const server = app.listen(PORT, () => {
-  logger.info(`🚀 KYC Verification Service started`);
-  logger.info(`📡 Server running on port ${PORT}`);
-  logger.info(`🌍 Environment: ${process.env.NODE_ENV}`);
-  logger.info(`📊 API Version: ${process.env.API_VERSION}`);
+  try {
+    logger.info(` KYC Verification Service started`);
+    logger.info(` Server running on port ${PORT}`);
+    logger.info(` Environment: ${process.env.NODE_ENV}`);
+    logger.info(` API Version: ${process.env.API_VERSION}`); 
+  } catch (error) {
+    console.log(error)
+  }
 });
 
 // Graceful shutdown
 process.on('SIGTERM', () => {
   logger.info('SIGTERM signal received: closing HTTP server');
-  server.close(() => {
-    logger.info('HTTP server closed');
-    process.exit(0);
-  });
+  setTimeout(() => {
+    server.close(() => {
+      logger.info('HTTP server closed');
+      process.exit(0);
+    });
+  }, 1000);
 });
 
 process.on('SIGINT', () => {
@@ -36,7 +42,6 @@ process.on('SIGINT', () => {
 process.on('unhandledRejection', (reason: Error) => {
   logger.error(`Unhandled Rejection: ${reason.message}`);
   logger.error(reason.stack || '');
-  // In production, you might want to exit the process
   // process.exit(1);
 });
 

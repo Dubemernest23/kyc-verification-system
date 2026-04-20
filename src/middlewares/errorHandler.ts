@@ -1,11 +1,12 @@
 import { Request, Response, NextFunction } from 'express';
-import { AppError } from '../types/errors';
+import { AppError } from '../types/error';
 import logger from '../config/logger';
 
 /**
  * Centralized error handling middleware
  * Must be the last middleware in the stack
  */
+
 export const errorHandler = (
   err: Error | AppError,
   req: Request,
@@ -15,13 +16,13 @@ export const errorHandler = (
   // Default error values
   let statusCode = 500;
   let message = 'Internal server error';
-  let isOperational = false;
+  // var isOperational = false;
 
   // Check if it's an AppError
   if (err instanceof AppError) {
     statusCode = err.statusCode;
     message = err.message;
-    isOperational = err.isOperational;
+    // isOperational = err.isOperational;
   }
 
   // Log error

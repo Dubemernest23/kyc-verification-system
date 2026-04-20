@@ -25,10 +25,7 @@
     /* Language and Environment */
     "target": "ES2020",
     "lib": ["ES2020"],
-    "module": "commonjs",
-    "moduleResolution": "node",
-    
-    /* Emit */
+    "module": "CommonJS",
     "outDir": "./dist",
     "rootDir": "./src",
     "removeComments": true,
@@ -49,7 +46,7 @@
     "noImplicitThis": true,
     "alwaysStrict": true,
     "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    // "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     
@@ -58,6 +55,7 @@
     "resolveJsonModule": true,
     
     /* Additional */
+    "ignoreDeprecations": "6.0",
     "types": ["node", "jest"],
     "typeRoots": ["./node_modules/@types", "./src/types"]
   },

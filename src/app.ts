@@ -2,14 +2,17 @@ import express, { Application } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
-import { httpLogger } from './middleware/httpLogger.middleware';
-import { errorHandler, notFoundHandler } from './middleware/errorHandler.middleware';
-import logger from './config/logger';
+import { httpLogger } from './middlewares/httpLogger';
+import { errorHandler, notFoundHandler} from './middlewares/errorHandler';
+// import logger from './config/logger';
 
-// Import routes (we'll create these later)
+
+//  =======
+// Import routes 
 // import authRoutes from './routes/auth.routes';
 // import kycRoutes from './routes/kyc.routes';
 // import adminRoutes from './routes/admin.routes';
+//  ========
 
 const app: Application = express();
 
@@ -52,6 +55,7 @@ app.use(httpLogger);
 // Health Check
 // ============================================
 app.get('/health', (req, res) => {
+  console.log(req.method)
   res.status(200).json({
     success: true,
     message: 'KYC Verification Service is running',
@@ -72,5 +76,4 @@ app.get('/health', (req, res) => {
 // ============================================
 app.use(notFoundHandler); // 404 handler
 app.use(errorHandler);    // Global error handler
-
 export default app;
