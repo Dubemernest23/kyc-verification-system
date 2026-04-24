@@ -3,6 +3,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import { httpLogger } from './middlewares/httpLogger';
+import { userRoutes } from './routes';
 import { errorHandler, notFoundHandler} from './middlewares/errorHandler';
 // import logger from './config/logger';
 
@@ -67,6 +68,7 @@ app.get('/health', (req, res) => {
 // ============================================
 // API Routes (uncomment as you create them)
 // ============================================
+app.use('/api/v1', userRoutes);
 // app.use('/api/v1/auth', authRoutes);
 // app.use('/api/v1/kyc', kycRoutes);
 // app.use('/api/v1/admin', adminRoutes);

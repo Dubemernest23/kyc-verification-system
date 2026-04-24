@@ -1,17 +1,18 @@
-import { Response } from "express"
-// import { asyncHandler } from "../utils/asyncWrapper"
+import { Request, Response } from "express";
+import { sendSuccess } from "../utils/response";
 
 export interface AuthRequest extends Request {
   user?: {
     id: string;
     email: string;
-    };
+  };
 }
 
-export const myProfile = async(req: AuthRequest, res: Response): Promise<void> =>{
-    console.log(req.method)
-    console.log(req.url)
-
-    return 
+export const myProfile = async (req: Request, res: Response): Promise<void> => {
+  sendSuccess(res, 200, "Profile fetched successfully", {
+    id: "12345",
+    email: "user@example.com",
+    name: "John Doe"
+  });
 };
 
