@@ -27,9 +27,8 @@
     "dev": "nodemon src/server.ts",
     "build": "tsc",
     "start": "node dist/server.js",
-    "prisma:generate": "prisma generate",
-    "prisma:migrate": "prisma migrate dev",
-    "prisma:studio": "prisma studio"
+    "migrate": "ts-node src/scripts/runMigrations.ts",
+    "migrate:up": "ts-node src/scripts/runMigrations.ts"
   },
   "dependencies": {
     "@prisma/client": "^5.8.0",
